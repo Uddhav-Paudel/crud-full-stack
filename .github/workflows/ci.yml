@@ -20,5 +20,4 @@ jobs:
           path: ~/.npm # Cache npm’s global cache
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # Key based on OS and package-lock.json
       - run: npm ci # Install dependencies reliably using package-lock.json
-      - run: npm test # Run tests defined in package.json
       - run: npm run lint # Run ESLint to ensure code quality

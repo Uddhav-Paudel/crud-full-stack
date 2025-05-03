@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Uddhav-Paudel/crud-full-stack#readme",
   "devDependencies": {
+    "eslint": "^9.26.0",
     "husky": "^8.0.0"
   }
 }
