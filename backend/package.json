@@ -1,0 +1,16 @@
+{
+  "name": "fs-backend",
+  "version": "1.0.0",
+  "description": "full stack backend application",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo 'add test'",
+    "lint": "eslint ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.15.6"
+  }
+}

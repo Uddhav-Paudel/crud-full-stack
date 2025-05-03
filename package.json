@@ -1,0 +1,26 @@
+{
+  "name": "crud-full-stack",
+  "version": "1.0.0",
+  "description": "crud full stack application",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Uddhav-Paudel/crud-full-stack.git"
+  },
+  "keywords": [
+    "full",
+    "stack",
+    "application"
+  ],
+  "author": "Uddhav",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Uddhav-Paudel/crud-full-stack/issues"
+  },
+  "homepage": "https://github.com/Uddhav-Paudel/crud-full-stack#readme",
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}
