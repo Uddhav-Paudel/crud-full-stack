@@ -3,7 +3,6 @@ description: Report something that isn’t working as expected
 title: "[BUG] <short summary>"
 labels: ["bug"]
 assignees: [],
-projects: ["Full-Stack App Roadmap"],
 
 body:
   - type: textarea
