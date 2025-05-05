@@ -14,10 +14,6 @@
     "preview": "npm --workspace fsapp run preview",
     "start:backend": "npm --workspace backend start"
   },
-  "lint-staged": {
-    "fsapp/**/*.{js,jsx}": "eslint --fix",
-    "backend/**/*.js": "eslint --fix"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Uddhav-Paudel/crud-full-stack.git"
