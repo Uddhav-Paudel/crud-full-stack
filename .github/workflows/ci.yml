@@ -8,37 +8,45 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
-    outputs:
-      node-cache-key: ${{ steps.cache.outputs.cache-hit }}
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Cache dependencies
-        id: cache
+
+      - name: Cache npm dependencies
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
       - run: npm ci
+
+      - name: Upload node_modules
+        uses: actions/upload-artifact@v3
+        with:
+          name: node-modules
+          path: node_modules/
 
   lint:
     needs: install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Restore cache
-        uses: actions/cache@v3
+
+      - name: Download node_modules
+        uses: actions/download-artifact@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci
+          name: node-modules
+          path: node_modules/
+
       - run: npm run lint
 
   test:
@@ -46,14 +54,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Restore cache
-        uses: actions/cache@v3
+
+      - name: Download node_modules
+        uses: actions/download-artifact@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci
+          name: node-modules
+          path: node_modules/
+
       - run: npm test
