@@ -46,7 +46,7 @@ jobs:
         with:
           name: node-modules
           path: node_modules/
-
+      - run: npm ci --workspaces
       - run: npm run lint
 
   test:
@@ -65,5 +65,5 @@ jobs:
         with:
           name: node-modules
           path: node_modules/
-
+      - run: npm ci --workspaces
       - run: npm test
