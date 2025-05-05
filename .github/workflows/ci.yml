@@ -22,7 +22,7 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
-      - run: npm ci --workspaces
+      - run: npm ci
 
       - name: Upload node_modules
         uses: actions/upload-artifact@v4
@@ -46,7 +46,7 @@ jobs:
         with:
           name: node-modules
           path: node_modules/
-      
+      - run: npm ci --workspaces
       - run: npm run lint
 
   test:
