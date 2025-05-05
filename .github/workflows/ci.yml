@@ -65,5 +65,6 @@ jobs:
         with:
           name: node-modules
           path: node_modules/
-      - run: npm install --workspaces
+      - run: npm i --package-lock=false --workspaces
+      
       - run: npm test
