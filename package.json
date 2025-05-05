@@ -2,8 +2,21 @@
   "name": "crud-full-stack",
   "version": "1.0.0",
   "description": "crud full stack application",
+  "workspaces": [
+    "fsapp",
+    "backend"
+  ],
   "scripts": {
-    "test": "test"
+    "lint": "npm run lint --workspaces",
+    "test": "npm run test --workspaces",
+    "build": "npm --workspace fsapp run build",
+    "start:fsapp": "npm --workspace fsapp start",
+    "preview": "npm --workspace fsapp run preview",
+    "start:backend": "npm --workspace backend start"
+  },
+  "lint-staged": {
+    "fsapp/**/*.{js,jsx}": "eslint --fix",
+    "backend/**/*.js": "eslint --fix"
   },
   "repository": {
     "type": "git",
@@ -21,7 +34,7 @@
   },
   "homepage": "https://github.com/Uddhav-Paudel/crud-full-stack#readme",
   "devDependencies": {
-    "eslint": "^9.26.0",
+    "globals": "^16.0.0",
     "husky": "^8.0.0"
   }
 }
