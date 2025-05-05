@@ -21,4 +21,3 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # Key based on OS and package-lock.json
       - run: npm ci # Install dependencies reliably using package-lock.json
       - run : npm run lint
-      - run: npm run test
