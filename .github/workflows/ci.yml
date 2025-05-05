@@ -1,29 +1,59 @@
-# CI workflow to build, test, and lint the CRUD app on push or pull request
 name: CI Pipeline
 on:
   push:
-    branches: [main] # Trigger on pushes to main branch
+    branches: [main]
   pull_request:
-    branches: [main] # Trigger on PRs to main branch
+    branches: [main]
+
 jobs:
-  install: 
+  install:
     runs-on: ubuntu-latest
-    steps: 
+    outputs:
+      node-cache-key: ${{ steps.cache.outputs.cache-hit }}
+    steps:
       - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
 
-  lint: 
+  lint:
     needs: install
     runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/cache@v3
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Restore cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
       - run: npm run lint
-  
-  test: 
+
+  test:
     needs: install
     runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/cache@v3
-      - run: npm run test
-      
-
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Restore cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+      - run: npm test
